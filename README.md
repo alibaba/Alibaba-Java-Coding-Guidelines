@@ -2,8 +2,8 @@
 
 * [Preface](#preface)
 * [1. Programming Specification](#1-programming-specification)
-   * [Naming Conventions: ](#naming-conventions-)
-   * [Constant Conventions: ](#constant-conventions-)
+   * [Naming Conventions](#naming-conventions)
+   * [Constant Conventions](#constant-conventions)
    * [Formatting Style](#formatting-style)
    * [OOP Rules](#oop-rules)
    * [Collection](#collection)
@@ -22,7 +22,7 @@
 * [4. Project Specification](#4-project-specification)
    * [Application Layers](#application-layers)
    * [Library Specification](#library-specification)
-   * [Server Specification ](#server-specification-)
+   * [Server Specification](#server-specification)
 * [5. Security Specification](#5-security-specification)
 
 ## Preface
@@ -38,7 +38,7 @@ The main purpose of this document is to help developers improve code quality. As
 We will continue to collect feedback from the community to improve Alibaba Java Coding Guidelines. 
       
 ## <font color="green">1. Programming Specification</font>
-### <font color="green">Naming Conventions: </font>
+### <font color="green">Naming Conventions</font>
 1\. **[Mandatory]** All names should not start or end with an underline or  a dollar sign.   
 > <font color="#FF4500">Counter example: </font> \_name / \_\_name / \$Object / name_ / name\$ / Object\$
 
@@ -108,7 +108,7 @@ constant definition: `String COMPANY = "alibaba";`
 &emsp;&emsp;&emsp;&emsp;3) Value Object: \*VO, where \* is website name in most cases.  
 &emsp;&emsp;&emsp;&emsp;4) POJO generally point to DO/DTO/BO/VO but cannot be used in naming as \*POJO. 
 
-### <font color="green">Constant Conventions: </font>
+### <font color="green">Constant Conventions</font>
 1\. **[Mandatory]** Magic values, except for predefined, are forbidden in coding.       
 > <font color="#FF4500">Counter example: </font> String key = <font color="blue">"Id#taobao_"</font> + tradeId;  
 
@@ -988,7 +988,7 @@ map.put("size", size);
 &emsp;&emsp;1) **Simple and controllable:**  Remove all unnecessary API and dependencies, only contain Service API, necessary domain model objects, Utils classes, constants, enumerations, etc. If other libraries must be included, better to make the scope as *provided* and let users to depend on the specific version number. Do not depend on specific log implementation, only depend on the log framework instead.  
 &emsp;&emsp;2) **Stable and traceable:** Change log of each version should be recorded. Make it easy to check the library owner and where the source code is. Libraries packaged in the application should not be changed unless the user updates the version proactively.
 
-### <font color="green">Server Specification </font>
+### <font color="green">Server Specification</font>
 1\. **[Recommended]** It is recommended to reduce the *time_wait* value of the *TCP* protocol for high concurrency servers.  
 > <font color="#977C00">Note: </font> By default the operating system will close connection in *time_wait* state after 240 seconds. In high concurrent situation, the server may not be able to establish new connections because there are too many connections in *time_wait* state, so the value of *time_wait* needs to be reduced.  
 > <font color="#019858">Positive example: </font>Modify the default value (Sec) by modifying the *_etcsysctl.conf* file on Linux servers: 
