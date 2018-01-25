@@ -449,7 +449,7 @@ new Comparator<Student>() {
 &emsp;&emsp;2) `CachedThreadPool` and `ScheduledThreadPool`:  
 &emsp;&emsp;The number of threads which are allowed to be created is `Integer.MAX_VALUE`. Creating too many threads might lead to OOM.
 
-5\. **[Mandatory]** `SimpleDataFormat` is unsafe, do not define it as a *static* variable. If have to, lock or `DateUtils` class must be used.  
+5\. **[Mandatory]** `SimpleDateFormat` is unsafe, do not define it as a *static* variable. If have to, lock or `DateUtils` class must be used.  
  > <font color="#019858">Positive example: </font>Pay attention to thread-safety when using `DateUtils`. It is recommended to use as below:
  ```java
 private static final ThreadLocal<DateFormat> df = new ThreadLocal<DateFormat>() {  
@@ -459,7 +459,7 @@ private static final ThreadLocal<DateFormat> df = new ThreadLocal<DateFormat>() 
     }  
 };  
  ```
- > <font color="#977C00">Note: </font>In JDK8, `Instant` can be used to replace `Date`, `Calendar` is replaced by `LocalDateTime`, `Simpledataformatter` is replaced by `DateTimeFormatter`.
+ > <font color="#977C00">Note: </font>In JDK8, `Instant` can be used to replace `Date`, `Calendar` is replaced by `LocalDateTime`, `Simpledateformatter` is replaced by `DateTimeFormatter`.
  
 6\. **[Mandatory]** `remove()` method must be implemented by `ThreadLocal` variables, especially when using thread pools in which threads are often reused. Otherwise, it may affect subsequent business logic and cause unexpected problems such as memory leak.    
 > <font color="#019858">Positive example: </font>
