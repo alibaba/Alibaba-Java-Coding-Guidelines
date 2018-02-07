@@ -26,20 +26,20 @@
 * [5. Security Specification](#5-security-specification)
 
 ## Preface
-We are pleased to present **Alibaba Java Coding Guidelines**, which consolidates the best programming practices over the years from Alibaba Group's technical teams. A vast number of Java programming teams impose demanding requirements on code quality across projects as we encourage reuse and better understanding of each other's programs. We have seen many programming problems in the past. For example, defective database table structures and index designs may cause software architecture flaws and performance risks. Yet as another example, confusing code structures make it difficult to maintain. Furthermore, vulnerable code without authentication is prone to hackers’ attacks. To address those kinds of problems, we developed this document for Java developers in Alibaba. 
+We are pleased to present **Alibaba Java Coding Guidelines**, which consolidates the best programming practices over the years from Alibaba Group's technical teams. A vast number of Java programming teams impose demanding requirements on code quality across projects as we encourage reuse and better understanding of each other's programs. We have seen many programming problems in the past. For example, defective database table structures and index designs may cause software architecture flaws and performance risks. As another example, confusing code structures make it difficult to maintain. Furthermore, vulnerable code without authentication is prone to hackers’ attacks. To address those kinds of problems, we developed this document for Java developers in Alibaba. 
 
-This document is consisted of five parts: ***Programming Specification***, ***Exception and Logs***, ***MySQL Specification***, ***Project Specification*** and ***Security Specification***. Based on the severity of the concerns, each specification is classified into three levels: ***Mandatory***, ***Recommended*** and ***Reference***. Further clarification is expressed in:  
+This document consists of five parts: ***Programming Specification***, ***Exception and Logs***, ***MySQL Specification***, ***Project Specification*** and ***Security Specification***. Based on the severity of the concerns, each specification is classified into three levels: ***Mandatory***, ***Recommended*** and ***Reference***. Further clarification is expressed in:  
  (1) "**Description**", which explains the content;  
  (2) "**Positive examples**", which describe recommended coding and implementation approaches;   
  (3) "**Counter examples**", which describe precautions and actual error cases.
 
-The main purpose of this document is to help developers improve code quality. As a result, developers can minimize potential and repetitive code errors. In addition, specification is essential to modern software architectures, which enable effective  collaborations. As an analogy, traffic regulations intend to protect public safety in essence rather than to deprive the rights of driving. It is easy to imagine the chaos of traffic without speed limits and traffic lights. Instead of destroying the creativity and elegance of program, the purpose of developing appropriate specification and standards of software is to improve the efficiency of collaboration by limiting excessive personalization.
+The main purpose of this document is to help developers improve code quality. As a result, developers can minimize potential and repetitive code errors. In addition, specification is essential to modern software architectures, which enable effective  collaborations. As an analogy, traffic regulations are intended to protect public safety rather than to deprive the rights of driving. It is easy to imagine the chaos of traffic without speed limits and traffic lights. Instead of destroying the creativity and elegance of program, the purpose of developing appropriate specification and standards of software is to improve the efficiency of collaboration by limiting excessive personalization.
 
 We will continue to collect feedback from the community to improve Alibaba Java Coding Guidelines. 
       
 ## <font color="green">1. Programming Specification</font>
 ### <font color="green">Naming Conventions</font>
-1\. **[Mandatory]** All names should not start or end with an underline or  a dollar sign.   
+1\. **[Mandatory]** Names should not start or end with an underline or  a dollar sign.   
 > <font color="#FF4500">Counter example: </font> \_name / \_\_name / \$Object / name_ / name\$ / Object\$
 
 2\. **[Mandatory]** Using Chinese, Pinyin, or Pinyin-English mixed spelling in naming is strictly prohibited. Accurate English spelling and grammar will make the code readable, understandable, and maintainable.   
@@ -47,7 +47,7 @@ We will continue to collect feedback from the community to improve Alibaba Java 
 
 3\. **[Mandatory]** Class names should be nouns in UpperCamelCase except domain models: DO, BO, DTO, VO, etc.   
  > <font color="#019858">Positive example: </font>MarcoPolo  /  UserDO  /  HtmlDTO  /  XmlService  /  TcpUdpDeal / TaPromotion  
- > <font color="#FF4500">Counter example: </font>macroPolo  /  UserDo  /  HTMLDto  /  XMLService  /  TCPUDPDeal / TAPromotion  
+ > <font color="#FF4500">Counter example: </font>marcoPolo  /  UserDo  /  HTMLDto  /  XMLService  /  TCPUDPDeal / TAPromotion  
   
 4\. **[Mandatory]** Method names, parameter names, member variable names, and local variable names should be written in lowerCamelCase.   
 > <font color="#019858">Positive example: </font> localValue / getHttpMessage()  /  inputUserId    
@@ -57,17 +57,17 @@ We will continue to collect feedback from the community to improve Alibaba Java 
 > <font color="#019858">Positive example: </font> MAX\_STOCK\_COUNT   
 > <font color="#FF4500">Counter example: </font> MAX\_COUNT   
 
-6\. **[Mandatory]** Abstract class names must start with *Abstract* or *Base*. Exception class names must be ended with *Exception*. Test cases shall be started with the class names to be tested and ended with *Test*.
+6\. **[Mandatory]** Abstract class names must start with *Abstract* or *Base*. Exception class names must end with *Exception*. Test case names shall start with the class names to be tested and end with *Test*.
 
 7\. **[Mandatory]** Brackets are a part of an Array type. The definition could be: *<font color="blue">String[]</font> args;*  
 > <font color="#FF4500">Counter example: </font>*String args[];*
 
-8\. **[Mandatory]** Do not add 'is' as prefix while defining Boolean variable, since it may cause a serialization exception in some Java Frameworks.  
+8\. **[Mandatory]** Do not add 'is' as prefix while defining Boolean variable, since it may cause a serialization exception in some Java frameworks.  
 > <font color="#FF4500">Counter example: </font>*boolean isSuccess;* The method name will be `isSuccess()` and then RPC framework will deduce the variable name as 'success', resulting in a serialization error since it cannot find the correct attribute.
 
-9\. **[Mandatory]** Package should be named in lowercase characters. There should be only one English word after each dot. Package names are always in <font color="blue">singular</font> format while class name can be in plural format if necessary.  
-> <font color="#019858">Positive example: </font> `com.alibaba.open.util` can be used as package name for utils;
-`MessageUtils` can be used as class name;
+9\. **[Mandatory]** A package should be named in lowercase characters. There should be only one English word after each dot. Package names are always in <font color="blue">singular</font> format while class names can be in plural format if necessary.  
+> <font color="#019858">Positive example: </font> `com.alibaba.open.util` can be used as a package name for utils;
+`MessageUtils` can be used as a class name.
 
 
 10\. **[Mandatory]** Uncommon abbreviations should be avoided for the sake of legibility.     
@@ -78,34 +78,34 @@ We will continue to collect feedback from the community to improve Alibaba Java 
 `public class LoginProxy;`  `public class ResourceObserver;`  
 > <font color="#977C00">Note: </font> Including corresponding pattern names helps readers understand ideas in design patterns quickly.
 
-12\. **[Recommended]** Do not add any modifier, including `public`, to method in interface classes for coding simplicity. Please add valid *Javadoc* comments for methods. Do not define any variables in the interface except for the common constants of the application.  
+12\. **[Recommended]** Do not add any modifier, including `public`, to methods in interface classes for coding simplicity. Please add valid *Javadoc* comments for methods. Do not define any variables in the interface except for the common constants of the application.  
  > <font color="#019858">Positive example: </font>method definition in the interface: `void f(); `  
 constant definition: `String COMPANY = "alibaba";`    
-> <font color="#977C00">Note: </font>In JDK8 it is allowed to define default implementation for interface methods, which is valuable for all implemented classes.
+> <font color="#977C00">Note: </font>In JDK8 it is allowed to define a default implementation for interface methods, which is valuable for all implemented classes.
 
-13\. There are mainly two rules for interface and corresponding implementation class naming:  
-&emsp;&emsp;1) **[Mandatory]** All *Service* and *DAO* classes must be interface based on SOA principle. Implementation class names should be ended with *Impl*.  
+13\. There are two main rules for interface and corresponding implementation class naming:  
+&emsp;&emsp;1) **[Mandatory]** All *Service* and *DAO* classes must be interfaces based on SOA principle. Implementation class names should end with *Impl*.  
   > <font color="#019858">Positive example: </font>`CacheServiceImpl` to implement `CacheService`.  
     
-&emsp;&emsp;2) **[Recommended]** If the interface name is to indicate the ability of the interface, then its name should be adjective.  
+&emsp;&emsp;2) **[Recommended]** If the interface name is to indicate the ability of the interface, then its name should be an adjective.  
   > <font color="#019858">Positive example: </font>`AbstractTranslator` to implement `Translatable`.
 
 14\. **[For Reference]** An Enumeration class name should end with *Enum*. Its members should be spelled out in upper case words, separated by underlines.  
- > <font color="#977C00">Note: </font>Enumeration is indeed a special constant class and all construction methods are private by default.  
+ > <font color="#977C00">Note: </font>Enumeration is indeed a special constant class and all constructor methods are private by default.  
  > <font color="#019858">Positive example: </font>Enumeration name: `DealStatusEnum`; Member name: `SUCCESS  / UNKOWN_REASON`.
 
 15\. **[For Reference]** Naming conventions for different package layers:  
 &emsp;&emsp;A) Naming conventions for Service/DAO layer methods  
-&emsp;&emsp;&emsp;&emsp;1) Use `get` as name prefix for method to get a single object.  
-&emsp;&emsp;&emsp;&emsp;2) Use `list` as name prefix for method to get multiple objects.  
-&emsp;&emsp;&emsp;&emsp;3) Use `count` as name prefix for statistical method.  
-&emsp;&emsp;&emsp;&emsp;4) Use `insert` or `save` (recommended) as name prefix for method to save data.  
-&emsp;&emsp;&emsp;&emsp;5) Use `delete` or `remove` (recommended) as name prefix for method to remove data.  
-&emsp;&emsp;&emsp;&emsp;6) Use `update` as name prefix for method to update data.   
+&emsp;&emsp;&emsp;&emsp;1) Use `get` as name prefix for a method to get a single object.  
+&emsp;&emsp;&emsp;&emsp;2) Use `list` as name prefix for a method to get multiple objects.  
+&emsp;&emsp;&emsp;&emsp;3) Use `count` as name prefix for a statistical method.  
+&emsp;&emsp;&emsp;&emsp;4) Use `insert` or `save` (recommended) as name prefix for a method to save data.  
+&emsp;&emsp;&emsp;&emsp;5) Use `delete` or `remove` (recommended) as name prefix for a method to remove data.  
+&emsp;&emsp;&emsp;&emsp;6) Use `update` as name prefix for a method to update data.   
 &emsp;&emsp;B) Naming conventions for Domain models  
 &emsp;&emsp;&emsp;&emsp;1) Data Object: \*DO, where \* is the table name.  
-&emsp;&emsp;&emsp;&emsp;2) Data Transfer Object: \*DTO, where \* is domain related name.  
-&emsp;&emsp;&emsp;&emsp;3) Value Object: \*VO, where \* is website name in most cases.  
+&emsp;&emsp;&emsp;&emsp;2) Data Transfer Object: \*DTO, where \* is a domain-related name.  
+&emsp;&emsp;&emsp;&emsp;3) Value Object: \*VO, where \* is a website name in most cases.  
 &emsp;&emsp;&emsp;&emsp;4) POJO generally point to DO/DTO/BO/VO but cannot be used in naming as \*POJO. 
 
 ### <font color="green">Constant Conventions</font>
