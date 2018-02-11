@@ -118,17 +118,17 @@ constant definition: `String COMPANY = "alibaba";`
 3\. **[Recommended]** Constants should be placed in different constant classes based on their functions. For example, cache related constants could be put in `CacheConsts` while configuration related constants could be kept in `ConfigConsts`.   
  > <font color="#977C00">Note: </font>It is difficult to find one constant in one big complete constant class.
 
-4\. **[Recommended]** Constants can be shared in the following 5 different layers: *shared in multiple applications; shared inside an application;  shared in a sub-project;  shared in a package; shared in a class;*.  
+4\. **[Recommended]** Constants can be shared in the following 5 different layers: *shared in multiple applications; shared inside an application;  shared in a sub-project;  shared in a package; shared in a class*.  
 &emsp;&emsp;1) Shared in multiple applications: keep in  a library, under `constant` directory in client.jar;  
 &emsp;&emsp;2) Shared in an application: keep in shared modules within the application, under `constant` directory;  
-&emsp;&emsp;<font color="#FF4500">Counter example: </font>Obvious variable names should also be defined as common shared constants in an application. The following definitions caused an exception in the production environment: it returns *false*, but expected to return *true* for `A.YES.equals(B.YES)`.  
+&emsp;&emsp;<font color="#FF4500">Counter example: </font>Obvious variable names should also be defined as common shared constants in an application. The following definitions caused an exception in the production environment: it returns *false*, but is expected to return *true* for `A.YES.equals(B.YES)`.  
 &emsp;&emsp;Definition in Class A: `public static final String YES = "yes";`    
 &emsp;&emsp;Definition in Class B: `public static final String YES = "y";`    
 &emsp;&emsp;3) Shared in a sub-project: placed under `constant` directory in the current project;  
 &emsp;&emsp;4) Shared in a package: placed under `constant` directory in current package;  
-&emsp;&emsp;5) Shared in a class: defined as 'private static final' inside class;
+&emsp;&emsp;5) Shared in a class: defined as 'private static final' inside class.
 
-5\. **[Recommended]** Enumeration class is to be used if variables value lie in a fixed range or if the variable has attributes. The following example shows that extra information (which day it is) can be included in enumeration:  
+5\. **[Recommended]** Use an enumeration class if values lie in a fixed range or if the variable has attributes. The following example shows that extra information (which day it is) can be included in enumeration:  
  > <font color="#019858">Positive example: </font>public Enum{ MONDAY(1), TUESDAY(2), WEDNESDAY(3), THURSDAY(4), FRIDAY(5), SATURDAY(6), SUNDAY(7);}
 
 ### <font color="green">Formatting Style</font>
@@ -145,7 +145,7 @@ constant definition: `String COMPANY = "alibaba";`
 4\. **[Mandatory]** There must be one space at both left and right side of operators, such as '=', '&&', '+', '-', *ternary operator*, etc.
 
 5\. **[Mandatory]** Each time a new block or block-like construct is opened, the indent increases by four spaces. When the block ends, the indent returns to the previous indent level. Tab characters are not used for indentation.   
-> <font color="#977C00">Note: </font>If tab characters are not used for indentation, we must set four spaces replacing tab character in IDE software previously. For example, "Use table character" should be unchecked in IDEA, "insert spaces for tabs" should be checked in Eclipse.  
+> <font color="#977C00">Note: </font>To prevent tab characters from being used for indentation, you must configure your IDE. For example, "Use tab character" should be unchecked in IDEA, "insert spaces for tabs" should be checked in Eclipse.  
 > <font color="#019858">Positive example: </font>     
 ```java 
 public static void main(String[] args) {
@@ -161,7 +161,7 @@ public static void main(String[] args) {
     // one space before '{' and line break after '{'
     if (flag == 1) {
         System.out.println("world");
-    // line break before '}'but not after '}' if it is followed by 'else'
+    // line break before '}' but not after '}' if it is followed by 'else'
     } else {  
         System.out.println("ok");
     // line break after '}' if it is the end of the block
@@ -179,8 +179,8 @@ public static void main(String[] args) {
 ```java
 StringBuffer sb = new StringBuffer();
 // line break if there are more than 120 characters, and 4 spaces indent at
-// the second line. make sure character '.' Moved to the next line 
-// together.  The third and forth line is aligned with the second one. 
+// the second line. Make sure character '.' moved to the next line 
+// together.  The third and fourth lines are aligned with the second one. 
 sb.append("zi").append("xin").
     .append("huang")...
     .append("huang")...
@@ -198,7 +198,7 @@ invoke(args1, args2, args3, ...
 ```
 
 7\. **[Mandatory]** There must be one space between a comma and the next parameter for methods with multiple parameters.   
-> <font color="#019858">Positive example: </font>One space is used after the '<font color="blue">*,*</font>' character in the following method definition.
+> <font color="#019858">Positive example: </font>One space is used after the *'<font color="blue">,</font>'* character in the following method definition.
 ```java
 f("a", "b", "c");
 ```
@@ -215,34 +215,34 @@ StringBuffer sb = new StringBuffer();
 ```
 > <font color="#977C00">Note: </font>It is cumbersome to insert several spaces to align the variables above.   
 
-10\. **[Recommended]** It is recommended to separate sections with same logic or semantic with a single blank line.   
+10\. **[Recommended]** Use a single blank line to separate sections with the same logic or semantics.
 > <font color="#977C00">Note: </font>It is unnecessary to use multiple blank lines to do that.
 
 ### <font color="green">OOP Rules</font>
-1\. **[Mandatory]** A static field or method should be directly referred by its class name instead of its corresponding object name.
+1\. **[Mandatory]** A static field or method should be directly referred to by its class name instead of its corresponding object name.
 
 2\. **[Mandatory]** An overridden method from an interface or abstract class must be marked with `@Override` annotation.   
  > <font color="#FF4500">Counter example: </font>For `getObject()` and `get0bject()`, the first one has a letter 'O', and the second one has a number '0'. To accurately determine whether the overriding is successful, an `@Override` annotation is necessary. Meanwhile, once the method signature in the abstract class is changed, the implementation class will report a compile-time error immediately.
 
 3\. **[Mandatory]** *varargs* is recommended only if all parameters are of the same type and semantics. Parameters with `Object` type should be avoided.  
- > <font color="#977C00">Note: </font>Arguments with the *varargs* feature must be at the end of the argument list (Programming with the *varargs* feature is not recommended).  
+ > <font color="#977C00">Note: </font>Arguments with the *varargs* feature must be at the end of the argument list. (Programming with the *varargs* feature is not recommended.)  
  > <font color="#019858">Positive example: </font>
 ```java
 public User getUsers(String type, Integer... ids);
 ```
 
-4\. **[Mandatory]** Modifying the <font color="blue">method signature</font> is forbidden to avoid affecting the caller. A `@Deprecated` annotation with explicit descriptions about the new service is necessary when an interface is deprecated.
+4\. **[Mandatory]** Modifying the <font color="blue">method signature</font> is forbidden to avoid affecting the caller. A `@Deprecated` annotation with an explicit description of the new service is necessary when an interface is deprecated.
 
 5\. **[Mandatory]** Using a deprecated class or method is prohibited.  
- > <font color="#977C00">Note: </font>For example, `decode(String source, String encode)` should be used instead of the deprecated method `decode(String encodeStr)`. Once an interface has been deprecated, the interface provider has the obligation to provide a new one. At the same time, client programmers have  the obligation to check out what its new implementation is.
+ > <font color="#977C00">Note: </font>For example, `decode(String source, String encode)` should be used instead of the deprecated method `decode(String encodeStr)`. Once an interface has been deprecated, the interface provider has the obligation to provide a new one. At the same time, client programmers have  the obligation to use the new interface.
 
 6\. **[Mandatory]** Since `NullPointerException` can possibly be thrown while calling the *equals* method of `Object`, *equals* should be invoked by a constant or an object that is definitely not *null*.  
  > <font color="#019858">Positive example: </font> `"test".equals(object);`   
  > <font color="#FF4500">Counter example: </font> `object.equals("test");`    
  > <font color="#977C00">Note: </font>`java.util.Objects#equals` (a utility class in JDK7) is recommended. 
 
-7\. **[Mandatory]** The wrapper classes should be compared by `equals` method rather than by symbol of '==' directly.    
- > <font color="#977C00">Note: </font>Consider this assignment: `Integer var = ?`. When it fits the range from <font color="blue">-128 to 127</font>, we can use `==` directly for a comparison. Because the `Integer` object will be generated by `IntegerCache.cache`, which reuses an existing object. Nevertheless, when it fits the complementary set of the former range, the `Integer` object will be allocated in Heap, which does not reuse an existing object. This is a pitfall. Hence the `equals` method is recommended.
+7\. **[Mandatory]** Use the `equals` method, rather than reference equality '==', to compare primitive wrapper classes.
+ > <font color="#977C00">Note: </font>Consider this assignment: `Integer var = ?`. When it fits the range from <font color="blue">-128 to 127</font>, we can use `==` directly for a comparison. Because the `Integer` object will be generated by `IntegerCache.cache`, which reuses an existing object. Nevertheless, when it fits the complementary set of the former range, the `Integer` object will be allocated in the heap, which does not reuse an existing object. This is a pitfall. Hence the `equals` method is recommended.
  
 8\. **[Mandatory]** Rules for using primitive data types and wrapper classes:     
 &emsp;&emsp;1) Members of a POJO class must be wrapper classes.  
@@ -259,7 +259,7 @@ public User getUsers(String type, Integer... ids);
 
 11\. **[Mandatory]** Business logic in constructor methods is prohibited. All initializations should be implemented in the `init` method.
 
-12\. **[Mandatory]** The `toString` method must be implemented in a POJO class. The `super.toString` method should be called in front of the whole implementation if the current class extends another POJO class.
+12\. **[Mandatory]** The `toString` method must be implemented in a POJO class. The `super.toString` method should be called in in the beginning of the implementation if the current class extends another POJO class.
  > <font color="#977C00">Note: </font>We can call the `toString` method in a POJO directly to print property values in order to check the problem when a method throws an exception in runtime.
 
 13\. **[Recommended]** When accessing an array generated by the split method in String using an index, make sure to check the last separator whether it is null to avoid `IndexOutOfBoundException`.  
@@ -271,11 +271,11 @@ String[] ary = str.split(",");
 System.out.println(ary.length);  
 ```
 
-14\. **[Recommended]** Multiple constructor methods or homonymous methods in a class should be put together orderly for better readability.
+14\. **[Recommended]** Multiple constructor methods or homonymous methods in a class should be put together for better readability.
 
-15\. **[Recommended]** The declarative order of methods within a class is:  
+15\. **[Recommended]** The order of methods declared within a class is:  
 *public or protected methods -> private methods -> getter/setter methods*.          
- > <font color="#977C00">Note: </font> As the most concerned ones for consumers and providers, *public* methods should be put on the first screen. *Protected* methods are only cared for by the subclasses, but they have chances to be vital when it comes to Template Design Pattern. *Private* methods, the black-box approaches, basically are not significant. *Getter/setter* methods of a Service or a DAO should be put at the end of the class implementation because of the low significance.
+ > <font color="#977C00">Note: </font> As the most concerned ones for consumers and providers, *public* methods should be put on the first screen. *Protected* methods are only cared for by the subclasses, but they have chances to be vital when it comes to Template Design Pattern. *Private* methods, the black-box approaches, basically are not significant to clients. *Getter/setter* methods of a Service or a DAO should be put at the end of the class implementation because of the low significance.
 
 16\. **[Recommended]** For a *setter* method, the argument name should be the same as the field name. Implementations of business logics in *getter/setter* methods, which will increase difficulties of the troubleshooting, are not recommended.  
  > <font color="#FF4500">Counter example: </font>
@@ -305,7 +305,7 @@ for (int i = 0; i < 100; i++) {
 &emsp;&emsp;3) A method which is not allow to be overridden.
 
 19\. **[Recommended]** Be cautious to copy an object using the `clone` method in `Object`.  
- > <font color="#977C00">Note: </font>The default implementation of `clone` in `Object` is a shadow (not deep) copy, which copies fields as pointers to the same objects in memory.
+ > <font color="#977C00">Note: </font>The default implementation of `clone` in `Object` is a shallow (not deep) copy, which copies fields as pointers to the same objects in memory.
 
 20\. **[Recommended]** Define the access level of members in class with severe  restrictions:    
 &emsp;&emsp;1) Constructor methods must be `private` if an allocation using `new` keyword outside of the class is forbidden.   
@@ -316,14 +316,14 @@ for (int i = 0; i < 100; i++) {
 &emsp;&emsp;6) Static variables should be considered in determining whether they are `final`.  
 &emsp;&emsp;7) Class methods that no one can access except the class that contains them must be `private`.  
 &emsp;&emsp;8) Class methods that are accessed from inheritants must be `protected`.   
- > <font color="#977C00">Note: </font> We should strictly control the access for any classes, methods, arguments and variables. Loose access control will be harmful to the decoupling of modules. Imagine the following situations. For a `private` class member, we can remove it as soon as we want. However, when it comes to a `public` class member, we have to think twice before any updates happen to it. 
+ > <font color="#977C00">Note: </font> We should strictly control the access for any classes, methods, arguments and variables. Loose access control causes harmful coupling of modules. Imagine the following situations. For a `private` class member, we can remove it as soon as we want. However, when it comes to a `public` class member, we have to think twice before any updates happen to it. 
 
 ### <font color="green">Collection</font>
 1\. **[Mandatory]** The usage of *hashCode* and *equals* should follow:   
 &emsp;&emsp;1) Override *hashCode* if *equals* is overridden.  
-&emsp;&emsp;2) These two methods must be overridden for `Set` since they are used to ensure that no duplicate object will be inserted in `Set`.  
-&emsp;&emsp;3) These two methods must be overridden if self-defined object is used as the key of `Map`.  
-> <font color="#977C00">Note: </font> `String` can be used as the key of `Map` since these two methods have been rewritten.
+&emsp;&emsp;2) These two methods must be overridden for elements of a `Set` since they are used to ensure that no duplicate object will be inserted in `Set`.  
+&emsp;&emsp;3) These two methods must be overridden for any object that is used as the key of `Map`.  
+> <font color="#977C00">Note: </font> `String` can be used as the key of `Map` since `String` defines these two methods.
 
 2\. **[Mandatory]** Do not add elements to collection objects returned by `keySet()`/`values()`/`entrySet()`, otherwise `UnsupportedOperationException` will be thrown. 
 
@@ -331,11 +331,11 @@ for (int i = 0; i < 100; i++) {
 > <font color="#FF4500">Counter example: </font>Adding elements to `Collections.emptyList()` will throw `UnsupportedOperationException`.
 
 4\. **[Mandatory]** Do not cast *subList* in class `ArrayList`, otherwise  `ClassCastException` will be thrown: `java.util.RandomAccessSubList` cannot be cast to `java.util.ArrayList`.  
- > <font color="#977C00">Note: </font>`subList` of `ArrayList` is an inner class, which is a view of `ArrayList`. All operations on the `Sublist` will affect the original list finally.
+ > <font color="#977C00">Note: </font>`subList` of `ArrayList` is an inner class, which is a view of `ArrayList`. All operations on the `Sublist` will affect the original list.
 
-5\. **[Mandatory]** When using *subList*, be careful to modify the size of original list. It might cause `ConcurrentModificationException` when performing traversing, adding or deleting on the *subList*.   
+5\. **[Mandatory]** When using *subList*, be careful when modifying the size of original list. It might cause `ConcurrentModificationException` when performing traversing, adding or deleting on the *subList*.   
 
-6\. **[Mandatory]** Use `toArray(T[] array)` to convert list to array. The input array type should be the same with the list whose size is `list.size()`.    
+6\. **[Mandatory]** Use `toArray(T[] array)` to convert a list to an array. The input array type should be the same as the list whose size is `list.size()`.    
  > <font color="#FF4500">Counter example: </font> Do not use `toArray` method without arguments. Since the return type is `Object[]`, `ClassCastException` will be thrown when casting it to a different array type.  
 > <font color="#019858">Positive example: </font>
 ```java
@@ -345,7 +345,7 @@ for (int i = 0; i < 100; i++) {
 		String[] array = new String[list.size()];
 		array = list.toArray(array);
 ```  
-> <font color="#977C00">Note: </font>When using `toArray` method with arguments, if input array size is not large enough, the method will re-assign the size internally, and then return the address of new array. If the size is larger than needed, the value of `index[list.size()]` will be set to *null* while other values remain the same. Defining an input with the same size of the list is recommended. 
+> <font color="#977C00">Note: </font>When using `toArray` method with arguments, pass an input with the same size as the list.  If input array size is not large enough, the method will re-assign the size internally, and then return the address of new array. If the size is larger than needed, extra elements (`index[list.size()]` and later) will be set to *null*.
 
 7\. **[Mandatory]** Do not use methods which will modify the list after using `Arrays.asList` to convert array to list, otherwise methods like *add/remove/clear* will throw `UnsupportedOperationException`.   
 > <font color="#977C00">Note: </font>The result of `asList` is the inner class of `Arrays`, which does not implement methods to modify itself. `Arrays.asList` is only a transferred interface, data inside which is stored as an array. 
@@ -555,7 +555,7 @@ public void today() {
 ```
 
 4\. **[Recommended]** Do not use complicated statements in conditional statements (except for frequently used methods like *getXxx/isXxx*). Use *boolean* variables to store results of complicated statements temporarily will increase the code's readability.  
-> <font color="#977C00">Note: </font>Logic within many `if` statements are very complicated. Readers need to analyze the final results of the conditional expression to decide what statement is to be executed in certain conditions.    
+> <font color="#977C00">Note: </font>Logic within many `if` statements are very complicated. Readers need to analyze the final results of the conditional expression to decide what statement will be executed in certain conditions.    
 > <font color="#019858">Positive example: </font>
 ```java
 // please refer to the pseudo-code as follows 
