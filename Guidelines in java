@@ -1,0 +1,9 @@
+(DATABASE_URL,
+      USERNAME,PASSWORD);
+   Statement stmt = con.createStatement();
+   ResultSet rs = stmt.executeQuery(SQL_QUERY)
+){
+   //...
+}catch(SQLException e){
+   e.printStackTrace();
+}
