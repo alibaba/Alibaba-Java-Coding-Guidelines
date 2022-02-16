@@ -530,9 +530,9 @@ try {
 > <font color="#977C00">Note: </font> If thread 1 does update after adding lock to table A, B, C accordingly, the lock sequence of thread 2 should also be A, B, C, otherwise deadlock might happen.
 
 9\. **[Mandatory]** When getting a lock by blocking methods, such as waiting in the blocking queue, lock() implemented from Lock must be put outside the try block. Besides, make sure no method between the lock() and try block in case that the lock won't be released in the finally block.  
-<font color="#977C00">Note 1: </font>If there are some exceptions thrown between lock() and try block, it won't be able to release the lock, causing that the other threads cannot get the lock.  
-<font color="#977C00">Note 2: </font>If lock() fails to run successfully between try block and lock(), it is possible that unlock() won't work. Then AQS(AbstractQueuedSynchronizer) method will be called (depends on the implementation of the class) and IllegalMonitorStateException will be thrown.  
-<font color="#977C00">Note 3: </font>It is possible that when implementing the lock() method in Lock object, it would throw unchecked Exception, resulting in the same outcome as Note 2.
+> <font color="#977C00">Note 1: </font>If there are some exceptions thrown between lock() and try block, it won't be able to release the lock, causing that the other threads cannot get the lock.  
+> <font color="#977C00">Note 2: </font>If lock() fails to run successfully between try block and lock(), it is possible that unlock() won't work. Then AQS(AbstractQueuedSynchronizer) method will be called (depends on the implementation of the class) and IllegalMonitorStateException will be thrown.  
+> <font color="#977C00">Note 3: </font>It is possible that when implementing the lock() method in Lock object, it would throw unchecked Exception, resulting in the same outcome as Note 2.
 
 10\. **[Mandatory]** A lock needs to be used to avoid update failure when modifying one record concurrently. Add lock either in application layer, in cache, or add optimistic lock in the database by using version as update stamp.  
  > <font color="#977C00">Note: </font>If access confliction probability is less than 20%, recommend to use optimistic lock, otherwise use pessimistic lock. Retry number of optimistic lock should be no less than 3.
@@ -1090,4 +1090,3 @@ map.put("size", size);
 > <font color="#977C00">Note: </font>For example, if there is no limitation to the times and frequency when sending verification codes to mobile phones, users might be bothered and *SMS* platform resources might be wasted.
 
 8\. **[Recommended]** In scenarios when users generate content (e.g., posting, comment, instant messages), anti-scam word filtering and other risk control strategies must be applied.
-
