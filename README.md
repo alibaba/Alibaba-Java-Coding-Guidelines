@@ -834,7 +834,7 @@ logger.error(various parameters or objects toString + "_" + e.getMessage(), e);
 8\. **[Mandatory]** The length of *varchar* should not exceed 5000, otherwise it should be defined as `text`. It is better to store them in a separate table in order to avoid its effect on indexing efficiency of other columns.  
 
 9\. **[Mandatory]** A table must include three columns as following: *id*, *gmt_create* and *gmt_modified*.  
-> <font color="#977C00">Note: </font> *id* is the primary key, which is *unsigned bigint* and self-incrementing with step length of 1. The type of *gmt_create* and *gmt_modified* should be *DATE_TIME*.
+> <font color="#977C00">Note: </font> *id* is the primary key, which is *unsigned bigint* and self-incrementing with step length of 1. The type of *gmt_create* and *gmt_modified* should be *DATETIME*.
 
 10\. **[Recommended]** It is recommended to define table name as *[table_business_name]_[table_purpose]*.  
  > <font color="#019858">Positive example: </font>  *tiger_task*  /  *tiger_reader*  / *mpp_config*   
